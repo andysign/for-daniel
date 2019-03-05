@@ -43,6 +43,8 @@ All that you need is Docker and in order to build everything without problems, U
 
 This *docker* solution aims to help build a way to run the *Geth* client *in background* in such a way so that the boot process can be *monitored* easily by scripts in a **fast way** and as soon as the startup process ends those scripts will automatically trigger other events such as *mine* without losing any time. Once the docker container is up and running and mining blocks, tha bash console will be triggered to view logs or **gracefully kill** the Ethereum client.
 
+![Screen01](screenshot-01.jpg)
+
 ----
 
 ## Building Docker
@@ -61,10 +63,15 @@ This *docker* solution aims to help build a way to run the *Geth* client *in bac
 
 ## Details About Node Accounts Configuration
 
+In order not to confuse the different ethereum addresses it is a good idea to use [vanity eth js](https://www.npmjs.com/package/vanity-eth) for every node in the order of the node names. For example, we could therefore have a vanity address that starts with `0` `x` **`01...`** for `node` **`01`** and another one that starts with `0` `x` **`02...`** for `node` **`02`** and so on.
+
+!NOTE: The password is short and easy to remember but in real-life this should be replaced by a long password or replaced by **[Hardware Wallets](https://www.hardware-wallets.net/ethereum/)** or **[Secure Enclave](https://www.computerhope.com/jargon/s/secure-enclave.htm)**. In this experiment we will need to to use pwd: 123
+
 ----
 
 ## Details About Node IDs Configuration
 
+To help easily debug the network and to understand what node is connected of course the `--identity` value parameter for `geth` is the best solution but if the user doesn't run geth with that parameter then it is hard to understand what node is connected to what so to make it simple the following nodes are sorted based on the final vanity id so that every node will start with something like `enode://` **`01...`** for `node` **`01`** and `enode://` **`02...`** for `node` **`02`** and so on.
 
 ----
 
