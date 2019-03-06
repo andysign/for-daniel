@@ -61,7 +61,7 @@ echo 'echo static-nodes done' >> ~/staticnodes.sh
 RUN echo build_startgeth_sh
 RUN touch ~/startgeth.sh && chmod +x ~/startgeth.sh && \
 echo '#''!''/bin/bash' >> ~/startgeth.sh && \
-echo 'nohup geth --networkid 1234567890 --identity $(hostname -I) --syncmode "full" --unlock 0 --password ~/pwd.txt --targetgaslimit 8000000 --maxpeers 2 --rpc --rpcaddr 0.0.0.0 --rpcport 8546 --rpccorsdomain "*" > ~/log 2> ~/log &' >> ~/startgeth.sh && \
+echo 'nohup geth --networkid 1234567890 --identity $(hostname -I) --syncmode "full" --unlock 0 --password ~/pwd.txt --targetgaslimit 8000000 --maxpeers 2 --rpc --rpcaddr 0.0.0.0 --rpcport 8545 --rpccorsdomain "*" > ~/log 2> ~/log &' >> ~/startgeth.sh && \
 echo 'echo startgeth done' >> ~/startgeth.sh
 
 RUN echo build_watchstartup_sh
@@ -73,8 +73,8 @@ RUN echo build_mine_sh
 RUN touch ~/mine.sh && chmod +x ~/mine.sh && \
 echo '#''!''/bin/bash' >> ~/mine.sh && \
 echo 'echo mining' >> ~/mine.sh && \
-echo 'geth --exec "admin.sleepBlocks('$NAME'-1);miner.start();admin.sleepBlocks(1000);miner.stop();" attach' >> ~/mine.sh && \
-echo 'while (( $(geth --exec "eth.blockNumber" attach) <= 1000 )); do sleep 0.1; done && echo mine1BlockDone' >> ~/mine.sh
+echo 'nohup geth --exec "admin.sleepBlocks(0);miner.start();admin.sleepBlocks(1000000);miner.stop();" attach 2> /dev/null &' >> ~/mine.sh && \
+echo '' >> ~/mine.sh
 
 WORKDIR /root/
 
