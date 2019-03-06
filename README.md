@@ -178,6 +178,8 @@ In order to add participants to the group now made of just one participant, find
 
 ![add2](screenshot-07.jpg)
 
+You can also remove other people if you are white listed but you can't remove yourself (this is also to avoid the unwanted scenario where there is no one left and therefore can't add anyone anymore).
+
 ## The Token: Transfer Tokens
 
 In order to transfer and so on, find the *token* contract address and connect the ABI to address using At Address. Then you can send with transfer:
@@ -189,3 +191,55 @@ In order to transfer and so on, find the *token* contract address and connect th
 ![transferprepare](screenshot-08.jpg)
 
 ![transfer](screenshot-09.jpg)
+
+You can't transfer to people that are not in the white list due to the modified transfer function (*transfer* with modifier *onlyWhitelisted*)
+
+## The Token: Token Balances
+
+Finally to check somone's balance you can use the balanceOf getter and get the balance only if the person is whitelisted.
+
+`0x02090f81fb8c98017472f13cd334ddbd2448dd73, 3`
+
+`0x030f23b9f8b5adba8c0fdb58e79b398420cb9b89, 2`
+
+
+![transferprepare](screenshot-08.jpg)
+
+![transfer](screenshot-09.jpg)
+
+You can't check the balance of someone who is not in the whitelist.
+
+## The Token: Possible Way To Anonymise
+
+In order to obfuscate even more, one might use a system where there are multiple tokens with multiple valuse in let's say fiat money but only certain participants know which one is what, like the name of the tokens and denomination in fiat will be hashed or encripted with asym encription. Therefore one participant who wants to show the full history of what happened and expose which one are decoin tokens and which ones are not, can expose the hashed secret(s) or tell the information about how to decript the denominations.
+
+**Example**:
+
+Create one token that represents 10GBP denominated bank notes called:
+
+`0x1a192fabce13988b84994d4296e6cdc418d55e2f1d7f942188d4040b94fc57ac`
+
+Create another token that represents 5GBP bank notes called:
+
+`0xceebf77a833b30520287ddd9478ff51abbdffa30aa90a8d655dba0e8a79ce0c1`
+
+Create a third token that represents 20GBP notes called:
+
+`0x731dc163f73d31d8c68f9917ce4ff967753939f70432973c04fd2c2a48148607`
+
+And of course create one last token for camoflage called (participants could use this at random just for creating confusion and use the other tokens and give each other change like in real life):
+
+`0x044852b2a670ade5407e78fb2863c51de9fcb96542a07186fe3aeda6bb8a116d`
+
+Then if needed (for audits) reveal the secrets:
+
+```
+> web3.sha3("10")
+"0x1a192fabce13988b84994d4296e6cdc418d55e2f1d7f942188d4040b94fc57ac"
+> web3.sha3("5")
+"0xceebf77a833b30520287ddd9478ff51abbdffa30aa90a8d655dba0e8a79ce0c1"
+> web3.sha3("20")
+"0x731dc163f73d31d8c68f9917ce4ff967753939f70432973c04fd2c2a48148607"
+> web3.sha3("0")
+"0x044852b2a670ade5407e78fb2863c51de9fcb96542a07186fe3aeda6bb8a116d"
+```
