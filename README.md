@@ -1,4 +1,4 @@
-# About
+# Before Deploy & Test
 
 ## DLT/Blockchain Task
 
@@ -133,3 +133,19 @@ More details about the third node
 `0x030f23b9f8b5adba8c0fdb58e79b398420cb9b89`
 
 ----
+
+# The Token
+
+In this project there is a test token callend *Consortium*. Just to make things closer to what people usually do, there is another sale contract that needs to be deployed first (`ConsortiumCrowdsale.sol`) because this one will automatically deploy the *token contract* as well (`ConsortiumToken.sol`) and finally the *whitelist* smart contract will be deployed as well (`ConsortiumWhitelist.sol`) and the caller will be added in the *whitelist* so that he/she can add others.
+
+## The Token: Testing Env
+
+In order to deploy and test the smart contracts, because there are no deployment scripts for now, you need to use an online compiler like  **[Ethereum Remix](https://remix.ethereum.org)**. In addition to avoid the the process of trying to copy and paste all the files (especially with the Open Zeppelin libary) it is a good idea to  order to run a remixd server.
+
+![remixd](screenshot-02.jpg)
+
+After that just open the first smart contract (`ConsortiumCrowdsale.sol`) and connect to Web3 Provider with:
+
+**[http://172.17.0.2:8545](http://172.17.0.2:8545)**
+
+![remixconnect](screenshot-03.jpg)
