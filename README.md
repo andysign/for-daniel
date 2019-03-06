@@ -159,3 +159,9 @@ In order to deploy, after you are done with connecting the *Remix Web IDE* to th
 Where the parameters are `address _owner` (for changing things like the end date), `address _wallet` (for collecting wei), `uint256 _cap` (for cap in tokens).
 
 ![deploy](screenshot-04.jpg)
+
+## The Token: Mint
+
+In order to create a few tokens play around you must send some *wei* to the contract and the contract will authomatically mint tokens for you. In order to do that change the falue field to something like 10 *wei* and hit the fallback.
+
+![mint](screenshot-05.jpg)
