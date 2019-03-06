@@ -45,9 +45,34 @@ This *docker* solution aims to help build a way to run the *Geth* client *in bac
 
 ![Screen01](screenshot-01.jpg)
 
+The docker container will automatically (**1.**) Copy the genesis state file (genesis.json); (**2.**) initialise the genesis block after setting up static nodes and so on; (**3.**) Start by running the client with verification checkpoints at boot (ipc, rpc, etc); (**4.**) Connect to at least another peer; (**4.**) Start mining blocks automatically; (**5.**) Leave the user in bin bash to execute other commands or kill geth.
+
+```
+    +-------------------+      +-------------------+
+    |                   +----->+                   |
+    | 172.17.0.2 node01 |      | 172.17.0.3 node02 |
+    |                   +<-----+                   |
+    +---^---------------+      +------+----------^-+
+    |   |                             |          |
+    |   |                             |          |
+    |   +-----+-------------------+   |          |
+    |         |                   +<--+          |
+    +-------->+ 172.17.0.3 node03 |              |
+              |                   +--------------+
+              +-------------------+
+```
+
 ----
 
 ## Building Docker
+
+First build the first image for the first node, then the second one then finally the third one with the following commands (make sure all other containers are stopped to avoid conflicts):
+
+`docker build -t ubuntu-geth-node-stats01 --build-arg NAME=1 .`
+
+`docker build -t ubuntu-geth-node-stats02 --build-arg NAME=2 .`
+
+`docker build -t ubuntu-geth-node-stats03 --build-arg NAME=3 .`
 
 ----
 
@@ -55,9 +80,21 @@ This *docker* solution aims to help build a way to run the *Geth* client *in bac
 
 ### Running Docker: Running the First Node
 
+In order to get the first available IP (`172.17.0.2`) address for this node, make sure you run this first.
+
+`docker run --rm -it --name node01 -h node01 ubuntu-geth-node-stats01`
+
 ### Running Docker: Running the Second Node
 
+Run this after running the first one and after you see the node one showing `unlockDone` and you will get the correct ip (`172.17.0.3`).
+
+`docker run --rm -it --name node02 -h node02 ubuntu-geth-node-stats02`
+
 ### Running Docker: Running the Third Node
+
+Finally, run this last to after the second one to get the correct ip (172.17.0.4).
+
+`docker run --rm -it --name node03 -h node03 ubuntu-geth-node-stats03`
 
 ----
 
@@ -75,6 +112,6 @@ To help easily debug the network and to understand what node is connected of cou
 
 ----
 
-## Details About Node Misc
+## Details About Every Node Misc
 
 ----
