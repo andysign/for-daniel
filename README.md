@@ -177,3 +177,15 @@ In order to add participants to the group now made of just one participant, find
 ![add1](screenshot-06.jpg)
 
 ![add2](screenshot-07.jpg)
+
+## The Token: Transfer Tokens
+
+In order to transfer and so on, find the *token* contract address and connect the ABI to address using At Address. Then you can send with transfer:
+
+`0x02090f81fb8c98017472f13cd334ddbd2448dd73, 3`
+
+`0x030f23b9f8b5adba8c0fdb58e79b398420cb9b89, 2`
+
+![transferprepare](screenshot-08.jpg)
+
+![transfer](screenshot-09.jpg)
