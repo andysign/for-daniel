@@ -74,7 +74,7 @@ RUN touch ~/mine.sh && chmod +x ~/mine.sh && \
 echo '#''!''/bin/bash' >> ~/mine.sh && \
 echo 'echo mining' >> ~/mine.sh && \
 echo 'nohup geth --exec "admin.sleepBlocks(0);miner.start();admin.sleepBlocks(1000000);miner.stop();" attach 2> /dev/null &' >> ~/mine.sh && \
-echo '' >> ~/mine.sh
+echo 'echo mining1000000' >> ~/mine.sh
 
 WORKDIR /root/
 
@@ -82,7 +82,7 @@ CMD ./initgeth.sh && ./accounts.sh && ./nodekey.sh && ./staticnodes.sh && ./star
 
 # CMD bash
 
-# docker run --rm -it --name node01 -h node01 ubuntu-geth-node-stats01 bash
-# docker run --rm -it --name node02 -h node02 ubuntu-geth-node-stats02 bash
-# docker run --rm -it --name node03 -h node03 ubuntu-geth-node-stats03 bash
+# docker run --rm -it --name node01 -h node01 ubuntu-geth-node-stats01
+# docker run --rm -it --name node02 -h node02 ubuntu-geth-node-stats02
+# docker run --rm -it --name node03 -h node03 ubuntu-geth-node-stats03
 # sudo rm -r .bash_history #optional b4 run
