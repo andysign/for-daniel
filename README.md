@@ -165,3 +165,15 @@ Where the parameters are `address _owner` (for changing things like the end date
 In order to create a few tokens play around you must send some *wei* to the contract and the contract will authomatically mint tokens for you. In order to do that change the falue field to something like 10 *wei* and hit the fallback.
 
 ![mint](screenshot-05.jpg)
+
+## The Token: Whitelist
+
+In order to add participants to the group now made of just one participant, find the *whitelist contract* address and connect the ABI to using at address. Then you can add to the white list with insertWhitelist the second one and the third one:
+
+`0x02090f81fb8c98017472f13cd334ddbd2448dd73`
+
+`0x030f23b9f8b5adba8c0fdb58e79b398420cb9b89`
+
+![add1](screenshot-06.jpg)
+
+![add2](screenshot-07.jpg)
