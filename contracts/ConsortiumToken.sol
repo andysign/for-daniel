@@ -38,6 +38,30 @@ contract ConsortiumToken is MintableToken, BurnableToken/*, ConsortiumWhitelist*
     }
 
     /**
+    * Transfer tokens from one address to another
+    */
+    function transferFrom(address _from, address _to, uint256 _value) public onlyWhitelisted(_to) returns (bool) {
+        require(_to != address(0));
+        require(_value <= balances[_from]);
+        require(_value <= allowed[_from][msg.sender]);
+
+        balances[_from] = balances[_from].sub(_value);
+        balances[_to] = balances[_to].add(_value);
+        allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+        Transfer(_from, _to, _value);
+        return true;
+    }
+
+    /**
+    * Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+    */
+    function approve(address _spender, uint256 _value) public onlyWhitelisted(_spender) returns (bool) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+
+    /**
     * Gets the balance of the specified whitelisted address.
     */
     function balanceOf(address _owner) public view onlyWhitelisted(_owner) returns (uint256 balance) {
