@@ -140,12 +140,22 @@ In this project there is a test token callend *Consortium*. Just to make things 
 
 ## The Token: Testing Env
 
-In order to deploy and test the smart contracts, because there are no deployment scripts for now, you need to use an online compiler like  **[Ethereum Remix](https://remix.ethereum.org)**. In addition to avoid the the process of trying to copy and paste all the files (especially with the Open Zeppelin libary) it is a good idea to  order to run a remixd server.
+In order to deploy and test the smart contracts, because there are no deployment scripts for now, you need to use an online compiler like  **[Ethereum Remix](https://remix.ethereum.org)**. In addition to avoid the the process of trying to copy and paste all the files (especially with the Open Zeppelin libary) it is a good idea to  order to run a [remixd](https://www.npmjs.com/package/remixd) server.
 
 ![remixd](screenshot-02.jpg)
 
 After that just open the first smart contract (`ConsortiumCrowdsale.sol`) and connect to Web3 Provider with:
 
-**[http://172.17.0.2:8545](http://172.17.0.2:8545)**
+http://172.17.0.2:8545
 
 ![remixconnect](screenshot-03.jpg)
+
+## The Token: Deployment
+
+In order to deploy, after you are done with connecting the *Remix Web IDE* to the *remixd localhost* and after you are done connecting to the IDE to one fot the three *Web3 Providers*, open the main smart contract `ConsortiumCrowdsale.sol` and deploy with the following parameters:
+
+`"0x010394e95e108465e438fd0af870f44ca47b87df", "0x010394e95e108465e438fd0af870f44ca47b87df", 1000`
+
+Where the parameters are `address _owner` (for changing things like the end date), `address _wallet` (for collecting wei), `uint256 _cap` (for cap in tokens).
+
+![deploy](screenshot-04.jpg)
