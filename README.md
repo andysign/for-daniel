@@ -114,4 +114,22 @@ To help easily debug the network and to understand what node is connected of cou
 
 ## Details About Every Node Misc
 
+More details about the first node
+
+`enode://010516a6e3acd95b9cf69c39d1d799d3e9fb8bef76e4c53bc1b92753a73b03e2e1222119365508dbb2faf18b365d2d42c86a4d748b6a8a7d1fa11592afb55ac5@172.17.0.2:30303`
+
+`0x010394e95e108465e438fd0af870f44ca47b87df`
+
+More details about the second node
+
+`enode://021e339379c1115da274bbd80f8014789c10682aa8b9e97a5a50d8c4127423fb628c8ab5e6bbc9d8e0ffbf1c7204d95f955ef17dcd06237eb5118820b8045cd0@172.17.0.3:30303`
+
+`0x02090f81fb8c98017472f13cd334ddbd2448dd73`
+
+More details about the third node
+
+`enode://03a46d5f0b7a5de1c7b2d4233693dbf5991d949ff789fb108081f57d796988f7788e23100f33ed82b1360ffa975c989aa7e76a4bebcc8aa8e427893ce43dd1f6@172.17.0.4:30303`
+
+`0x030f23b9f8b5adba8c0fdb58e79b398420cb9b89`
+
 ----
