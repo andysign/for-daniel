@@ -15,7 +15,7 @@ RUN rm geth_1.8.23+build17682+xenial_amd64.deb
 RUN ln -s /usr/bin/geth /root/geth
 
 RUN echo build_genesis_json_from_puppeth
-ENV NETWORKID 1234567890
+# ENV NETWORKID 1234567890
 COPY genesis.json /root/
 
 RUN echo build_initgeth_sh
@@ -76,9 +76,16 @@ echo 'echo mining' >> ~/mine.sh && \
 echo 'nohup geth --exec "admin.sleepBlocks(0);miner.start();admin.sleepBlocks(1000000);miner.stop();" attach 2> /dev/null &' >> ~/mine.sh && \
 echo 'echo mining1000000' >> ~/mine.sh
 
+RUN echo build_stopgeth_sh
+RUN touch ~/stopgeth.sh && chmod +x ~/stopgeth.sh && \
+echo '#''!''/bin/bash' >> ~/stopgeth.sh && \
+echo 'ID=$(ps -o pid,command -C geth | grep 1234567890 | cut -d" " -f4)' >> ~/stopgeth.sh && \
+echo 'echo $ID' >> ~/stopgeth.sh && \
+echo 'kill -INT $ID' >> ~/stopgeth.sh
+
 WORKDIR /root/
 
-CMD ./initgeth.sh && ./accounts.sh && ./nodekey.sh && ./staticnodes.sh && ./startgeth.sh && ./watchstartup.sh && ./mine.sh && bash
+CMD ./initgeth.sh && ./accounts.sh && ./nodekey.sh && ./staticnodes.sh && ./startgeth.sh && ./watchstartup.sh && ./mine.sh && echo 'Use stopgeth.sh to stop' && bash
 
 # CMD bash
 
