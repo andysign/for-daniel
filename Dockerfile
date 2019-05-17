@@ -6,12 +6,13 @@ FROM ubuntu:16.04
 
 RUN apt-get --fix-missing update
 RUN apt-get install -y sudo
-RUN sudo apt-get install -y wget curl
+RUN sudo apt-get --fix-missing update
+RUN sudo apt-get install -y curl wget
 
 RUN echo install_geth-1.8.23
-RUN wget http://ppa.launchpad.net/ethereum/ethereum/ubuntu/pool/main/e/ethereum/geth_1.8.23+build17682+xenial_amd64.deb
-RUN dpkg -i geth_1.8.23+build17682+xenial_amd64.deb
-RUN rm geth_1.8.23+build17682+xenial_amd64.deb
+RUN wget http://ppa.launchpad.net/ethereum/ethereum/ubuntu/pool/main/e/ethereum/geth_1.8.27+build18537+xenial_amd64.deb
+RUN dpkg -i geth_1.8.27+build18537+xenial_amd64.deb
+RUN rm geth_1.8.27+build18537+xenial_amd64.deb
 RUN ln -s /usr/bin/geth /root/geth
 
 RUN echo build_genesis_json_from_puppeth
